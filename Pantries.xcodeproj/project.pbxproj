@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56B2797D614853D17F0A163A /* Pods_Pantries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8A16ED5515C94202FD6A94 /* Pods_Pantries.framework */; };
 		A41DFBC120CB960A00A9014F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41DFBC020CB960A00A9014F /* AppDelegate.swift */; };
 		A41DFBC320CB960A00A9014F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41DFBC220CB960A00A9014F /* ListViewController.swift */; };
 		A41DFBC620CB960A00A9014F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41DFBC420CB960A00A9014F /* Main.storyboard */; };
@@ -30,9 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		48A9B314911D7B5DDD9EC088 /* Pods-Pantries.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pantries.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pantries/Pods-Pantries.debug.xcconfig"; sourceTree = "<group>"; };
-		4E593D9CD3FB051837CB7DDA /* Pods-Pantries.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pantries.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pantries/Pods-Pantries.release.xcconfig"; sourceTree = "<group>"; };
-		8F8A16ED5515C94202FD6A94 /* Pods_Pantries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pantries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41DFBBD20CB960A00A9014F /* Pantries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pantries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41DFBC020CB960A00A9014F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A41DFBC220CB960A00A9014F /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -65,29 +61,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56B2797D614853D17F0A163A /* Pods_Pantries.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10FAD1C1208B021C631C2396 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				48A9B314911D7B5DDD9EC088 /* Pods-Pantries.debug.xcconfig */,
-				4E593D9CD3FB051837CB7DDA /* Pods-Pantries.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		A41DFBB420CB960A00A9014F = {
 			isa = PBXGroup;
 			children = (
 				A41DFBBF20CB960A00A9014F /* Pantries */,
 				A41DFBBE20CB960A00A9014F /* Products */,
-				10FAD1C1208B021C631C2396 /* Pods */,
-				FFE1184F03DF155FFC5A0D84 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,14 +111,6 @@
 			path = Pantries;
 			sourceTree = "<group>";
 		};
-		FFE1184F03DF155FFC5A0D84 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8F8A16ED5515C94202FD6A94 /* Pods_Pantries.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,12 +118,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A41DFBCF20CB960B00A9014F /* Build configuration list for PBXNativeTarget "Pantries" */;
 			buildPhases = (
-				176505BDA2558FDB418740F9 /* [CP] Check Pods Manifest.lock */,
 				A41DFBB920CB960A00A9014F /* Sources */,
 				A41DFBBA20CB960A00A9014F /* Frameworks */,
 				A41DFBBB20CB960A00A9014F /* Resources */,
-				922FDA8F657679B3D855B240 /* [CP] Embed Pods Frameworks */,
-				55D1026DF0A901A9CA734321 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,64 +184,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		176505BDA2558FDB418740F9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Pantries-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		55D1026DF0A901A9CA734321 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pantries/Pods-Pantries-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		922FDA8F657679B3D855B240 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Pantries/Pods-Pantries-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pantries/Pods-Pantries-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A41DFBB920CB960A00A9014F /* Sources */ = {
@@ -438,14 +353,16 @@
 		};
 		A41DFBD020CB960B00A9014F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48A9B314911D7B5DDD9EC088 /* Pods-Pantries.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q285243259;
 				INFOPLIST_FILE = Pantries/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.endhungerdurham.pantries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -455,14 +372,16 @@
 		};
 		A41DFBD120CB960B00A9014F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E593D9CD3FB051837CB7DDA /* Pods-Pantries.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q285243259;
 				INFOPLIST_FILE = Pantries/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.endhungerdurham.pantries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
