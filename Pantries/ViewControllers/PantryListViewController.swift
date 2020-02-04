@@ -35,8 +35,10 @@ final class PantryListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = NSLocalizedString("list_screen_title", comment: "Navigation title for the list screen.")
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
         
         tableView.register(UINib(nibName: "PantryTableViewCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
@@ -52,25 +54,31 @@ final class PantryListViewController: UITableViewController {
         refreshPantries()
     }
     
+    @objc func refreshControlPulled(_ sender: UIRefreshControl) {
+        self.refreshPantries()
+    }
+    
     func refreshPantries() {
         self.loadingOverlay.isHidden = false
         self.tableView.isUserInteractionEnabled = false
         loadPantries { [weak self] pantries in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 if let pantries = pantries {
-                    self?.pantries = pantries
-                    self?.tableView.reloadData()
+                    self.pantries = pantries
+                    self.tableView.reloadData()
                 }
+                self.refreshControl?.endRefreshing()
                 UIView.animate(
                     withDuration: 0.5,
                     animations: {
-                        self?.loadingOverlay.alpha = 0.0
+                        self.loadingOverlay.alpha = 0.0
                     },
                     completion: { _ in
-                        self?.loadingOverlay.isHidden = true
+                        self.loadingOverlay.isHidden = true
                     }
                 )
-                self?.tableView.isUserInteractionEnabled = true
+                self.tableView.isUserInteractionEnabled = true
             }
         }
     }
