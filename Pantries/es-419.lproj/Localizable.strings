@@ -13,5 +13,8 @@ item_detail_available="Disponibilidad";
 item_detail_prereqs="Requisitos";
 item_detail_info="Información";
 
+map_screen_title="Despensas";
+list_screen_title="Despensas";
+
 tab_item_list="List";
 tab_item_map="Map";

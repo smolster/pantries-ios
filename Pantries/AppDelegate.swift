@@ -7,15 +7,28 @@
 //
 
 import UIKit
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let window = UIWindow()
 
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let rootTabVC = UITabBarController(nibName: nil, bundle: nil)
+        
+        let mapVC = PantryMapViewController(pantryLoadingFunction: loadPantriesFromGitHub)
+        mapVC.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icon_map_tab"), selectedImage: nil)
+        
+        let listVC = PantryListViewController(
+            pantryLoadingFunction: loadPantriesFromGitHub,
+            pantryImageProvider: MapViewPantryImageProvider(size: CGSize(width: 50, height: 50))
+        )
+        listVC.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icon_list_tab"), selectedImage: nil)
+        rootTabVC.viewControllers = [mapVC, listVC].map { UINavigationController(rootViewController: $0) }
+        
+        window.rootViewController = rootTabVC
+        window.makeKeyAndVisible()
+        
         return true
     }
 
