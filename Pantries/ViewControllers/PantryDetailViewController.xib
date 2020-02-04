@@ -39,7 +39,7 @@
                             </constraints>
                         </mapView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9So-Rd-G6X">
-                            <rect key="frame" x="15" y="215" width="384" height="402.5"/>
+                            <rect key="frame" x="15" y="215" width="384" height="407.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd6-Io-WZe">
                                     <rect key="frame" x="0.0" y="0.0" width="384" height="33.5"/>
@@ -148,7 +148,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBV-cs-sZ5">
-                                    <rect key="frame" x="0.0" y="346.5" width="384" height="56"/>
+                                    <rect key="frame" x="0.0" y="346.5" width="384" height="61"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDv-ua-Fnf">
                                             <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
@@ -157,7 +157,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrz-9m-66W">
-                                            <rect key="frame" x="0.0" y="30.5" width="384" height="25.5"/>
+                                            <rect key="frame" x="0.0" y="30.5" width="384" height="20.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -165,7 +165,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Hrz-9m-66W" firstAttribute="leading" secondItem="FBV-cs-sZ5" secondAttribute="leading" id="LIl-OB-6De"/>
-                                        <constraint firstAttribute="bottom" secondItem="Hrz-9m-66W" secondAttribute="bottom" id="Lgb-lD-CBs"/>
+                                        <constraint firstAttribute="bottom" secondItem="Hrz-9m-66W" secondAttribute="bottom" constant="10" id="Lgb-lD-CBs"/>
                                         <constraint firstItem="fDv-ua-Fnf" firstAttribute="width" secondItem="Hrz-9m-66W" secondAttribute="width" id="OoW-vO-UVK"/>
                                         <constraint firstItem="Hrz-9m-66W" firstAttribute="top" secondItem="fDv-ua-Fnf" secondAttribute="bottom" constant="10" id="TmA-J2-fZ8"/>
                                         <constraint firstItem="fDv-ua-Fnf" firstAttribute="leading" secondItem="FBV-cs-sZ5" secondAttribute="leading" id="aVp-nZ-ld6"/>

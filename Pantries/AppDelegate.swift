@@ -17,13 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootTabVC = UITabBarController(nibName: nil, bundle: nil)
         
         let mapVC = PantryMapViewController(pantryLoadingFunction: loadPantriesFromGitHub)
-        mapVC.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icon_map_tab"), selectedImage: nil)
+        mapVC.tabBarItem = UITabBarItem(
+            title: NSLocalizedString("tab_item_map", comment: "The tab title of the map view."),
+            image: #imageLiteral(resourceName: "icon_map_tab"),
+            selectedImage: nil
+        )
         
         let listVC = PantryListViewController(
             pantryLoadingFunction: loadPantriesFromGitHub,
             pantryImageProvider: MapViewPantryImageProvider(size: CGSize(width: 50, height: 50))
         )
-        listVC.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icon_list_tab"), selectedImage: nil)
+        listVC.tabBarItem = UITabBarItem(
+            title: NSLocalizedString("tab_item_list", comment: "The tab title of the list view."),
+            image: #imageLiteral(resourceName: "icon_list_tab"),
+            selectedImage: nil
+        )
         rootTabVC.viewControllers = [mapVC, listVC].map { UINavigationController(rootViewController: $0) }
         
         window.rootViewController = rootTabVC

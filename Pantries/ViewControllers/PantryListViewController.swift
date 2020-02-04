@@ -43,6 +43,7 @@ final class PantryListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
         
         title = NSLocalizedString("list_screen_title", comment: "Navigation title for the list screen.")
         
@@ -63,8 +64,6 @@ final class PantryListViewController: UITableViewController {
         loadingOverlay.set(to: .spinningWithText("Loading..."))
         
         refreshPantries()
-        
-        requestLocationPermission()
     }
     
     @objc private func alphabeticalButtonTapped() {
@@ -77,6 +76,7 @@ final class PantryListViewController: UITableViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.distanceFilter = 100.0
         locationManager.requestLocation()
+        tableView.reloadData()
     }
     
     func refreshPantries() {
@@ -135,26 +135,6 @@ final class PantryListViewController: UITableViewController {
     }
     
     // MARK: - Private Methods
-    
-    private func requestLocationPermission() {
-        locationManager.delegate = self
-
-        switch CLLocationManager.authorizationStatus() {
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-            break
-            
-        case .restricted, .denied:
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            break
-            
-        case .authorizedWhenInUse, .authorizedAlways:
-            navigationItem.rightBarButtonItem?.isEnabled = true
-            break
-        @unknown default:
-            fatalError()
-        }
-    }
 }
 
 extension PantryListViewController: CLLocationManagerDelegate {

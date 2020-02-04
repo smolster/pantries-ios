@@ -9,9 +9,9 @@
 app_title="Pantries";
 
 item_detail_address="Address";
-item_detail_available="Available";
-item_detail_prereqs="Prereqs";
-item_detail_info="Info";
+item_detail_available="Availability";
+item_detail_prereqs="Qualifications";
+item_detail_info="Additional Info";
 
 map_screen_title="Pantries";
 list_screen_title="Pantries";
