@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  PantryListViewController.swift
 //  Pantries
 //
-//  Created by Josh Johnson on 6/9/18.
+//  Created by Swain Molster on 11/24/19.
 //  Copyright © 2018 End Hunger Durham. All rights reserved.
 //
 
@@ -17,15 +17,13 @@ final class PantryListViewController: UITableViewController {
     private let locationManager = CLLocationManager()
     
     private let loadPantries: PantryLoadingFunction
-    private let pantryImageProvider: PantryImageProvider
     
     private let loadingOverlay = LoadingOverlay()
     
     private var pantries: [Pantry] = []
     
-    init(pantryLoadingFunction: @escaping PantryLoadingFunction, pantryImageProvider: PantryImageProvider) {
+    init(pantryLoadingFunction: @escaping PantryLoadingFunction) {
         self.loadPantries = pantryLoadingFunction
-        self.pantryImageProvider = pantryImageProvider
         super.init(style: .plain)
     }
     

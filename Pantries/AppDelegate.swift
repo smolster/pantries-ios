@@ -23,10 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             selectedImage: nil
         )
         
-        let listVC = PantryListViewController(
-            pantryLoadingFunction: loadPantriesFromGitHub,
-            pantryImageProvider: MapViewPantryImageProvider(size: CGSize(width: 50, height: 50))
-        )
+        let listVC = PantryListViewController(pantryLoadingFunction: loadPantriesFromGitHub)
         listVC.tabBarItem = UITabBarItem(
             title: NSLocalizedString("tab_item_list", comment: "The tab title of the list view."),
             image: #imageLiteral(resourceName: "icon_list_tab"),

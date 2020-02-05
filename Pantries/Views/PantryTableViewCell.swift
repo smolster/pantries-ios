@@ -2,7 +2,7 @@
 //  PantryTableViewCell.swift
 //  Pantries
 //
-//  Created by Josh Johnson on 6/9/18.
+//  Created by Swain Molster on 11/24/19.
 //  Copyright © 2018 End Hunger Durham. All rights reserved.
 //
 

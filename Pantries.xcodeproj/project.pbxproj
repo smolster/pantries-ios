@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A052E53B238B384600889C42 /* PantryImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A052E53A238B384600889C42 /* PantryImageProvider.swift */; };
-		A052E53D238B388300889C42 /* MapViewPantryImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A052E53C238B388300889C42 /* MapViewPantryImageProvider.swift */; };
 		A052E542238B3DFD00889C42 /* Pantry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A052E541238B3DFD00889C42 /* Pantry.swift */; };
 		A08B84FC238B3191002A37DD /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08B84FB238B3191002A37DD /* LoadingOverlay.swift */; };
 		A08B84FF238B33FE002A37DD /* GitHubPantryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08B84FE238B33FE002A37DD /* GitHubPantryProvider.swift */; };
@@ -25,8 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A052E53A238B384600889C42 /* PantryImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryImageProvider.swift; sourceTree = "<group>"; };
-		A052E53C238B388300889C42 /* MapViewPantryImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPantryImageProvider.swift; sourceTree = "<group>"; };
 		A052E541238B3DFD00889C42 /* Pantry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pantry.swift; sourceTree = "<group>"; };
 		A08B84FB238B3191002A37DD /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		A08B84FE238B33FE002A37DD /* GitHubPantryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPantryProvider.swift; sourceTree = "<group>"; };
@@ -86,8 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				A08B84FE238B33FE002A37DD /* GitHubPantryProvider.swift */,
-				A052E53A238B384600889C42 /* PantryImageProvider.swift */,
-				A052E53C238B388300889C42 /* MapViewPantryImageProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -211,7 +205,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A052E53B238B384600889C42 /* PantryImageProvider.swift in Sources */,
 				A052E542238B3DFD00889C42 /* Pantry.swift in Sources */,
 				A0CB6CF623E907DD00EBA68B /* PantryDetailViewController.swift in Sources */,
 				A08B84FF238B33FE002A37DD /* GitHubPantryProvider.swift in Sources */,
@@ -219,7 +212,6 @@
 				A08B84FC238B3191002A37DD /* LoadingOverlay.swift in Sources */,
 				A44ADEBB20CC5994000154A6 /* PantryTableViewCell.swift in Sources */,
 				A41DFBC120CB960A00A9014F /* AppDelegate.swift in Sources */,
-				A052E53D238B388300889C42 /* MapViewPantryImageProvider.swift in Sources */,
 				A48ECF1820F55F58003A3A11 /* PantryMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
