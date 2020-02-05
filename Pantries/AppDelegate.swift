@@ -11,7 +11,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    let window = UIWindow()
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let rootTabVC = UITabBarController(nibName: nil, bundle: nil)
@@ -31,8 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         rootTabVC.viewControllers = [mapVC, listVC].map { UINavigationController(rootViewController: $0) }
         
-        window.rootViewController = rootTabVC
-        window.makeKeyAndVisible()
+        self.window = UIWindow()
+        window?.rootViewController = rootTabVC
+        window?.makeKeyAndVisible()
         
         return true
     }

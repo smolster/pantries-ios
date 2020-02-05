@@ -89,6 +89,14 @@ extension PantryDetailViewController: MKMapViewDelegate {
         marker.animatesDrop = true
         return marker
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let coordinate = CLLocationCoordinate2D(latitude: pantry.latitude, longitude: pantry.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+        mapItem.name = pantry.organizations
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
+        mapView.deselectAnnotation(view.annotation, animated: true)
+    }
 }
 
 func makeTitleDetailView(title: String, detail: String) -> UIView {
