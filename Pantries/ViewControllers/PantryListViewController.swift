@@ -15,12 +15,15 @@ final class PantryListViewController: UITableViewController {
     
     private let cellIdentifier = "PantryTableCell"
     private let locationManager = CLLocationManager()
+    private let searchController = UISearchController(searchResultsController: nil)
     
     private let loadPantries: PantryLoadingFunction
     
     private let loadingOverlay = LoadingOverlay()
     
     private var pantries: [Pantry] = []
+    // Used for search
+    private var filteredPantries: [Pantry] = []
     
     init(pantryLoadingFunction: @escaping PantryLoadingFunction) {
         self.loadPantries = pantryLoadingFunction
@@ -34,6 +37,13 @@ final class PantryListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("list_screen_title", comment: "Navigation title for the list screen.")
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Search pantries"
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
@@ -59,11 +69,15 @@ final class PantryListViewController: UITableViewController {
     func refreshPantries() {
         self.loadingOverlay.isHidden = false
         self.tableView.isUserInteractionEnabled = false
+        self.searchController.searchBar.text = nil
+        self.searchController.searchBar.resignFirstResponder()
+
         loadPantries { [weak self] pantries in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 if let pantries = pantries {
                     self.pantries = pantries
+                    self.filteredPantries = pantries
                     self.tableView.reloadData()
                 }
                 self.refreshControl?.endRefreshing()
@@ -84,18 +98,34 @@ final class PantryListViewController: UITableViewController {
     // MARK: - UITableViewDataSource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pantries.count
+        return filteredPantries.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PantryTableViewCell
-        cell.configure(with: pantries[indexPath.row])
+        cell.configure(with: filteredPantries[indexPath.row])
         return cell
     }
     
     // MARK: - UITableViewDelegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(PantryDetailViewController(for: pantries[indexPath.row]), animated: true)
+        self.navigationController?.pushViewController(PantryDetailViewController(for: filteredPantries[indexPath.row]), animated: true)
     }
+}
+
+extension PantryListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            self.filteredPantries = pantries.filter { pantry in
+                return pantry.address.lowercased().contains(searchText.lowercased())
+                    || pantry.city.lowercased().contains(searchText.lowercased())
+                    || pantry.organizations.lowercased().contains(searchText.lowercased())
+            }
+        } else {
+            filteredPantries = pantries
+        }
+        tableView.reloadData()
+    }
+    
 }
