@@ -16,6 +16,8 @@ final class PantryMapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private let loadPantries: PantryLoadingFunction
     
+    private var isInitialLoad: Bool = true
+    private var userLocation: CLLocationCoordinate2D?
     private var pantries: [Pantry] = []
     
     init(pantryLoadingFunction: @escaping PantryLoadingFunction) {
@@ -32,6 +34,7 @@ final class PantryMapViewController: UIViewController {
         self.title = NSLocalizedString("map_screen_title", comment: "Navigation title for the map screen.")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_nearby"), style: .plain, target: self, action: #selector(scanButtonTapped))
+        navigationItem.rightBarButtonItem?.isEnabled = CLLocationManager.authorizationStatus() == .authorizedWhenInUse
         
         locationManager.delegate = self
         
@@ -47,12 +50,20 @@ final class PantryMapViewController: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         refreshPantries()
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.distanceFilter = 100.0
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            self.locationManager.requestWhenInUseAuthorization()
+        } else if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            self.locationManager.startUpdatingLocation()
+        }
     }
     
     @objc private func scanButtonTapped(_ sender: UIBarButtonItem) {
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.distanceFilter = 100.0
-        locationManager.requestLocation()
+        if let location = self.userLocation {
+            self.mapView.setCenter(location, animated: true)
+        }
     }
     
     func refreshPantries() {
@@ -92,11 +103,24 @@ extension PantryMapViewController: MKMapViewDelegate {
 }
 
 extension PantryMapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            manager.startUpdatingLocation()
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last,
             location.horizontalAccuracy <= kCLLocationAccuracyHundredMeters else { return }
-        DispatchQueue.main.async {
-            self.mapView.setCenter(location.coordinate, animated: true)
+        self.userLocation = location.coordinate
+        // On the initial load, we want to center the map on the user.
+        if self.isInitialLoad {
+            self.isInitialLoad = false
+            DispatchQueue.main.async {
+                self.mapView.setCenter(location.coordinate, animated: true)
+            }
         }
     }
     

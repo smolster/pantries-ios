@@ -77,6 +77,7 @@ final class PantryDetailViewController: UIViewController {
         
         // Configure map view.
         self.mapView.delegate = self
+        self.mapView.showsUserLocation = true
         self.mapView.addAnnotation(PantryAnnotation(pantry: self.pantry))
         self.mapView.camera.centerCoordinate = CLLocationCoordinate2D(latitude: self.pantry.latitude, longitude: self.pantry.longitude)
         self.mapView.camera.altitude = 1000
