@@ -13,16 +13,9 @@ final class PantryDetailViewController: UIViewController {
     
     @IBOutlet private weak var mapView: MKMapView!
     
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet private weak var organizationLabel: UILabel!
     @IBOutlet private weak var phoneNumberLabel: UILabel!
-    @IBOutlet private weak var addressTitleLabel: UILabel!
-    @IBOutlet private weak var addressLabel: UILabel!
-    @IBOutlet private weak var availabilityTitleLabel: UILabel!
-    @IBOutlet private weak var availabilityLabel: UILabel!
-    @IBOutlet private weak var qualificationsTitleLabel: UILabel!
-    @IBOutlet private weak var qualificationsLabel: UILabel!
-    @IBOutlet private weak var additionalInfoTitleLabel: UILabel!
-    @IBOutlet private weak var additionalInfoLabel: UILabel!
     
     private let pantry: Pantry
     
@@ -44,19 +37,43 @@ final class PantryDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Plug pnztry into labels.
+        // Plug pantry into labels.
         self.title = pantry.organizations
+        
+        self.organizationLabel.lineBreakMode = .byWordWrapping
+        self.organizationLabel.numberOfLines = 0
+        self.organizationLabel.font = .preferredFont(forTextStyle: .title1)
+        self.organizationLabel.adjustsFontForContentSizeCategory = true
         self.organizationLabel.text = pantry.organizations
+        
+        self.phoneNumberLabel.lineBreakMode = .byWordWrapping
+        self.phoneNumberLabel.numberOfLines = 0
+        self.phoneNumberLabel.font = .preferredFont(forTextStyle: .title2)
+        self.phoneNumberLabel.adjustsFontForContentSizeCategory = true
         self.phoneNumberLabel.text = pantry.phone
-        self.addressTitleLabel.text = NSLocalizedString("item_detail_address", comment: "The address header in the detail view.")
-        self.addressLabel.text = pantry.address
-        self.availabilityTitleLabel.text = NSLocalizedString("item_detail_available", comment: "The availability header in the detail view.")
-        self.availabilityLabel.text = "\(pantry.days)\n\(pantry.hours)"
-        self.qualificationsTitleLabel.text = NSLocalizedString("item_detail_prereqs", comment: "The qualifications header in the detail view.")
-        self.qualificationsLabel.text = pantry.prereq
-        self.additionalInfoTitleLabel.text = NSLocalizedString("item_detail_info", comment: "The additional info header in the detail view.")
-        self.additionalInfoLabel.text = pantry.info
+        
+        [
+            (
+                title: NSLocalizedString("item_detail_address", comment: "The address header in the detail view."),
+                detail: pantry.address
+            ),
+            (
+                title: NSLocalizedString("item_detail_available", comment: "The availability header in the detail view."),
+                detail: "\(pantry.days)\n\(pantry.hours)"
+            ),
+            (
+                title: NSLocalizedString("item_detail_prereqs", comment: "The qualifications header in the detail view."),
+                detail: pantry.prereq
+            ),
+            (
+                title: NSLocalizedString("item_detail_info", comment: "The additional info header in the detail view."),
+                detail: pantry.info
+            )
+        ]
+            .forEach { item in
+                let titleDetailView = makeTitleDetailView(title: item.title, detail: item.detail)
+                stackView.addArrangedSubview(titleDetailView)
+            }
         
         // Configure map view.
         self.mapView.delegate = self
@@ -72,4 +89,37 @@ extension PantryDetailViewController: MKMapViewDelegate {
         marker.animatesDrop = true
         return marker
     }
+}
+
+func makeTitleDetailView(title: String, detail: String) -> UIView {
+    let titleLabel = UILabel()
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    titleLabel.numberOfLines = 0
+    titleLabel.lineBreakMode = .byWordWrapping
+    titleLabel.font = .preferredFont(forTextStyle: .headline)
+    titleLabel.adjustsFontForContentSizeCategory = true
+    titleLabel.text = title
+    
+    let detailLabel = UILabel()
+    detailLabel.translatesAutoresizingMaskIntoConstraints = false
+    detailLabel.numberOfLines = 0
+    detailLabel.lineBreakMode = .byWordWrapping
+    detailLabel.font = .preferredFont(forTextStyle: .body)
+    detailLabel.adjustsFontForContentSizeCategory = true
+    detailLabel.text = detail
+    
+    let view = UIView()
+    view.addSubview(titleLabel)
+    view.addSubview(detailLabel)
+    
+    NSLayoutConstraint.activate([
+        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
+        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        titleLabel.bottomAnchor.constraint(equalTo: detailLabel.topAnchor, constant: -10),
+        detailLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        detailLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        detailLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
+    return view
 }
