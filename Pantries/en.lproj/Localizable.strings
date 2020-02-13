@@ -9,6 +9,7 @@
 app_title="Pantries";
 
 item_detail_address="Address";
+item_detail_phone="Phone";
 item_detail_available="Availability";
 item_detail_prereqs="Qualifications";
 item_detail_info="Additional Info";

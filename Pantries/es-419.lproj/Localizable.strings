@@ -9,6 +9,7 @@
 app_title="Despensas";
 
 item_detail_address="Dirección";
+item_detail_phone="Teléfono";
 item_detail_available="Disponibilidad";
 item_detail_prereqs="Requisitos";
 item_detail_info="Información";

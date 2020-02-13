@@ -12,7 +12,6 @@
             <connections>
                 <outlet property="mapView" destination="XA1-yR-a2G" id="M7I-Sb-Noy"/>
                 <outlet property="organizationLabel" destination="Cd6-Io-WZe" id="Rra-1B-7v3"/>
-                <outlet property="phoneNumberLabel" destination="uls-7c-Keu" id="UTU-ik-pOU"/>
                 <outlet property="stackView" destination="9So-Rd-G6X" id="SpN-wc-Y1b"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -32,7 +31,7 @@
                             </constraints>
                         </mapView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9So-Rd-G6X">
-                            <rect key="frame" x="15" y="215" width="384" height="97.5"/>
+                            <rect key="frame" x="15" y="215" width="384" height="33.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd6-Io-WZe">
                                     <rect key="frame" x="0.0" y="0.0" width="384" height="33.5"/>
@@ -40,31 +39,8 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yjB-YQ-3Hh">
-                                    <rect key="frame" x="0.0" y="53.5" width="384" height="44"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_phone_small" translatesAutoresizingMaskIntoConstraints="NO" id="fCy-3f-Ifh">
-                                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="fCy-3f-Ifh" secondAttribute="height" multiplier="1:1" id="6PY-OV-rSB"/>
-                                                <constraint firstAttribute="width" constant="44" id="FxG-J2-0Es"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uls-7c-Keu">
-                                            <rect key="frame" x="54" y="9" width="330" height="26.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <gestureRecognizers/>
-                                    <connections>
-                                        <outletCollection property="gestureRecognizers" destination="MQe-VN-LEw" appends="YES" id="hJF-X1-FmI"/>
-                                    </connections>
-                                </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="yjB-YQ-3Hh" firstAttribute="width" secondItem="9So-Rd-G6X" secondAttribute="width" id="9Z4-3A-mp2"/>
                                 <constraint firstItem="Cd6-Io-WZe" firstAttribute="width" secondItem="9So-Rd-G6X" secondAttribute="width" id="dZt-Mg-rxW"/>
                             </constraints>
                         </stackView>
@@ -100,7 +76,4 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
-    <resources>
-        <image name="icon_phone_small" width="20" height="20"/>
-    </resources>
 </document>

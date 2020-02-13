@@ -31,7 +31,7 @@ final class PantryMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("map_screen_title", comment: "Navigation title for the map screen.")
+        navigationItem.title = NSLocalizedString("map_screen_title", comment: "Navigation title for the map screen.")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_nearby"), style: .plain, target: self, action: #selector(scanButtonTapped))
         navigationItem.rightBarButtonItem?.isEnabled = CLLocationManager.authorizationStatus() == .authorizedWhenInUse

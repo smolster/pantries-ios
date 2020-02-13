@@ -36,7 +36,7 @@ final class PantryListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("list_screen_title", comment: "Navigation title for the list screen.")
+        navigationItem.title = NSLocalizedString("list_screen_title", comment: "Navigation title for the list screen.")
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
