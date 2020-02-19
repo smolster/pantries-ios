@@ -21,24 +21,3 @@ struct Pantry: Decodable {
     var latitude: Double
     var longitude: Double
 }
-
-class PantryOld {
-    
-    var address: String?
-    var city: String?
-    var days: String?
-    var hours: String?
-    var info: String?
-    var organization: String?
-    var phone: String?
-    var prereq: String?
-    var latitude: Double?
-    var longitude: Double?
-    
-    var image: UIImage?
-    var snapshotter: MKMapSnapshotter?
-    
-    // todo cheating a distance for demo
-    var distance = Double.greatestFiniteMagnitude
-    
-}
