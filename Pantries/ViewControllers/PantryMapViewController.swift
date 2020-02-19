@@ -20,6 +20,8 @@ final class PantryMapViewController: UIViewController {
     private var userLocation: CLLocationCoordinate2D?
     private var pantries: [Pantry] = []
     
+    private var selectedPantry: Pantry?
+    
     init(pantryLoadingFunction: @escaping PantryLoadingFunction) {
         self.loadPantries = pantryLoadingFunction
         super.init(nibName: nil, bundle: nil)
@@ -66,7 +68,7 @@ final class PantryMapViewController: UIViewController {
         }
     }
     
-    func refreshPantries() {
+    private func refreshPantries() {
         loadPantries { [weak self] pantries in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -88,18 +90,32 @@ extension PantryMapViewController: MKMapViewDelegate {
     
     public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? PantryAnnotation else { return nil }
-
-        let marker = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
-        marker.animatesDrop = true
+        let reuseIdentifier = "Placemark"
         
-        return marker
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) {
+            dequeuedView.annotation = annotation
+            return dequeuedView
+        } else {
+            let marker = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            marker.animatesDrop = true
+            marker.canShowCallout = true
+            let button = UIButton(type: .detailDisclosure)
+            button.addTarget(self, action: #selector(calloutButtonTapped(_:)), for: .touchUpInside)
+            marker.rightCalloutAccessoryView = button
+            return marker
+        }
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotation = view.annotation as? PantryAnnotation else { return }
-        self.navigationController?.pushViewController(PantryDetailViewController(for: annotation.pantry), animated: true)
+        if let pantryAnnotation = view.annotation as? PantryAnnotation {
+            self.selectedPantry = pantryAnnotation.pantry
+        }
     }
     
+    @objc private func calloutButtonTapped(_ sender: UIButton) {
+        guard let pantry = self.selectedPantry else { return }
+        self.navigationController?.pushViewController(PantryDetailViewController(for: pantry), animated: true)
+    }
 }
 
 extension PantryMapViewController: CLLocationManagerDelegate {
@@ -130,17 +146,20 @@ extension PantryMapViewController: CLLocationManagerDelegate {
 }
 
 final class PantryAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    
+    let coordinate: CLLocationCoordinate2D
     let pantry: Pantry
+    
+    var title: String? {
+        return pantry.organizations
+    }
+    
+    var subtitle: String? {
+        return "\(pantry.days), \(pantry.hours)"
+    }
     
     init(pantry: Pantry) {
         self.pantry = pantry
         self.coordinate = CLLocationCoordinate2D(latitude: pantry.latitude, longitude: pantry.longitude)
-        
         super.init()
     }
-    
 }
-
-
