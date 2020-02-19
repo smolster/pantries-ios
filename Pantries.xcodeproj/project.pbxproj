@@ -29,7 +29,7 @@
 		A0CB6CF023E9067E00EBA68B /* PantryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantryListViewController.swift; sourceTree = "<group>"; };
 		A0CB6CF423E907DD00EBA68B /* PantryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryDetailViewController.swift; sourceTree = "<group>"; };
 		A0CB6CF523E907DD00EBA68B /* PantryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PantryDetailViewController.xib; sourceTree = "<group>"; };
-		A41DFBBD20CB960A00A9014F /* Pantries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pantries.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A41DFBBD20CB960A00A9014F /* Durham Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Durham Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41DFBC020CB960A00A9014F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A41DFBC720CB960B00A9014F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41DFBCA20CB960B00A9014F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		A41DFBBE20CB960A00A9014F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A41DFBBD20CB960A00A9014F /* Pantries.app */,
+				A41DFBBD20CB960A00A9014F /* Durham Food.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 			);
 			name = Pantries;
 			productName = Pantries;
-			productReference = A41DFBBD20CB960A00A9014F /* Pantries.app */;
+			productReference = A41DFBBD20CB960A00A9014F /* Durham Food.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -369,9 +369,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.endhungerdurham.pantries-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Durham Food";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -388,9 +388,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.endhungerdurham.pantries-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Durham Food";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
