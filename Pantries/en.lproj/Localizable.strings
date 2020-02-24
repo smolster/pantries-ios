@@ -20,3 +20,5 @@ tab_item_list="List";
 tab_item_map="Map";
 
 ehd_blurb="This app is sponsored by End Hunger Durham.\n\nEnd Hunger Durham works with and on behalf of Durham residents living with food insecurity to improve their access to healthy food and community resources.";
+
+search_placeholder="Search resources";

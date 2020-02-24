@@ -46,7 +46,7 @@ final class PantryListViewController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Search pantries"
+        searchController.searchBar.placeholder = NSLocalizedString("search_placeholder", comment: "The placeholder text in the list search bar.")
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
         
