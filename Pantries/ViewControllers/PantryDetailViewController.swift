@@ -11,6 +11,7 @@ import MapKit
 
 final class PantryDetailViewController: UIViewController {
     
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var mapView: MKMapView!
     
     @IBOutlet private weak var stackView: UIStackView!
@@ -47,7 +48,7 @@ final class PantryDetailViewController: UIViewController {
             (
                 title: NSLocalizedString("item_detail_available", comment: "The availability header in the detail view."),
                 detail: "\(pantry.days)\n\(pantry.hours)",
-                detailDataDetectorTypes: nil
+                detailDataDetectorTypes: UIDataDetectorTypes.calendarEvent
             ),
             (
                 title: NSLocalizedString("item_detail_phone", comment: "The phone header in the detail view."),
@@ -107,10 +108,35 @@ final class PantryDetailViewController: UIViewController {
         
         // Configure map view.
         self.mapView.delegate = self
+        self.mapView.isScrollEnabled = false
         self.mapView.showsUserLocation = true
-        self.mapView.addAnnotation(PantryAnnotation(pantry: self.pantry))
-        self.mapView.camera.centerCoordinate = CLLocationCoordinate2D(latitude: self.pantry.latitude, longitude: self.pantry.longitude)
+        let pantryCoordinate = CLLocationCoordinate2D(latitude: pantry.latitude, longitude: pantry.longitude)
+        self.mapView.addAnnotation(NavigateAnnotation(coordinate: pantryCoordinate))
+        self.mapView.camera.centerCoordinate = pantryCoordinate
         self.mapView.camera.altitude = 1000
+        
+        // Add button to map view
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 5.0
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.setTitle(NSLocalizedString("item_detail_navigate_button", comment: "The title of the Navigate button on the detail screen"), for: .init())
+        button.addTarget(self, action: #selector(navigateButtonTapped), for: .touchUpInside)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        self.scrollView.addSubview(button)
+        
+        NSLayoutConstraint.activate([
+            button.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -15),
+            button.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -15)
+        ])
+    }
+    
+    @objc private func navigateButtonTapped() {
+        let coordinate = CLLocationCoordinate2D(latitude: pantry.latitude, longitude: pantry.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+        mapItem.name = pantry.organizations
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
     }
 }
 
@@ -120,12 +146,13 @@ extension PantryDetailViewController: MKMapViewDelegate {
         marker.animatesDrop = true
         return marker
     }
+}
+
+private final class NavigateAnnotation: NSObject, MKAnnotation {
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let coordinate = CLLocationCoordinate2D(latitude: pantry.latitude, longitude: pantry.longitude)
-        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
-        mapItem.name = pantry.organizations
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
-        mapView.deselectAnnotation(view.annotation, animated: true)
+    let coordinate: CLLocationCoordinate2D
+    
+    init(coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
     }
 }

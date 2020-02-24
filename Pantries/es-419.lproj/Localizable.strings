@@ -11,9 +11,12 @@ item_detail_phone="Teléfono";
 item_detail_available="Disponibilidad";
 item_detail_prereqs="Requisitos";
 item_detail_info="Información";
+item_detail_navigate_button="Indicaciones";
 
 map_screen_title="Map";
 list_screen_title="List";
 
 tab_item_list="List";
 tab_item_map="Map";
+
+ehd_blurb="Este app se patrocina por End Hunger Durham.\n\nEnd Hunger Durham trabaja con y de parte de los residentes de Durham viviendo con inseguridad de comida para mejorar su acceso a comida sana y recursos comunitarios.";

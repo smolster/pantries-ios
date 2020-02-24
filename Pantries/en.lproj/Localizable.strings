@@ -11,9 +11,12 @@ item_detail_phone="Phone";
 item_detail_available="Availability";
 item_detail_prereqs="Qualifications";
 item_detail_info="Additional Info";
+item_detail_navigate_button="Directions";
 
 map_screen_title="Map";
 list_screen_title="List";
 
 tab_item_list="List";
 tab_item_map="Map";
+
+ehd_blurb="This app is sponsored by End Hunger Durham.\n\nEnd Hunger Durham works with and on behalf of Durham residents living with food insecurity to improve their access to healthy food and community resources.";

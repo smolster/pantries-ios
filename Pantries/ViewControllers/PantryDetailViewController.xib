@@ -8,10 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PantryDetailViewController" customModule="Pantries" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PantryDetailViewController" customModule="Durham_Food" customModuleProvider="target">
             <connections>
                 <outlet property="mapView" destination="XA1-yR-a2G" id="M7I-Sb-Noy"/>
                 <outlet property="organizationLabel" destination="Cd6-Io-WZe" id="Rra-1B-7v3"/>
+                <outlet property="scrollView" destination="jHU-Pr-p0i" id="BYP-s1-mPO"/>
                 <outlet property="stackView" destination="9So-Rd-G6X" id="SpN-wc-Y1b"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,13 +26,13 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XA1-yR-a2G">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="225"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="200" id="qFK-Zi-eET"/>
+                                <constraint firstAttribute="height" constant="225" id="qFK-Zi-eET"/>
                             </constraints>
                         </mapView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9So-Rd-G6X">
-                            <rect key="frame" x="15" y="215" width="384" height="33.5"/>
+                            <rect key="frame" x="15" y="240" width="384" height="33.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd6-Io-WZe">
                                     <rect key="frame" x="0.0" y="0.0" width="384" height="33.5"/>

@@ -36,7 +36,12 @@ final class PantryListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = NSLocalizedString("list_screen_title", comment: "Navigation title for the list screen.")
+        
+        let aboutButton = UIButton(type: .infoLight)
+        aboutButton.addTarget(self, action: #selector(aboutButtonTapped(_:)), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: aboutButton)
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -62,11 +67,7 @@ final class PantryListViewController: UITableViewController {
         refreshPantries()
     }
     
-    @objc func refreshControlPulled(_ sender: UIRefreshControl) {
-        self.refreshPantries()
-    }
-    
-    func refreshPantries() {
+    private func refreshPantries() {
         self.loadingOverlay.isHidden = false
         self.tableView.isUserInteractionEnabled = false
         self.searchController.searchBar.text = nil
@@ -93,6 +94,14 @@ final class PantryListViewController: UITableViewController {
                 self.tableView.isUserInteractionEnabled = true
             }
         }
+    }
+    
+    @objc func refreshControlPulled(_ sender: UIRefreshControl) {
+        self.refreshPantries()
+    }
+    
+    @objc private func aboutButtonTapped(_ sender: UIButton) {
+        self.present(UINavigationController(rootViewController: AboutViewController()), animated: true, completion: nil)
     }
     
     // MARK: - UITableViewDataSource Methods

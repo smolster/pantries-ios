@@ -16,7 +16,6 @@ final class PantryMapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private let loadPantries: PantryLoadingFunction
     
-    private var isInitialLoad: Bool = true
     private var userLocation: CLLocationCoordinate2D?
     private var pantries: [Pantry] = []
     
@@ -35,6 +34,10 @@ final class PantryMapViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("map_screen_title", comment: "Navigation title for the map screen.")
         
+        let aboutButton = UIButton(type: .infoLight)
+        aboutButton.addTarget(self, action: #selector(aboutButtonTapped(_:)), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: aboutButton)
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_nearby"), style: .plain, target: self, action: #selector(scanButtonTapped))
         navigationItem.rightBarButtonItem?.isEnabled = CLLocationManager.authorizationStatus() == .authorizedWhenInUse
         
@@ -51,6 +54,7 @@ final class PantryMapViewController: UIViewController {
         
         mapView.delegate = self
         mapView.showsUserLocation = true
+        
         refreshPantries()
         
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -59,12 +63,6 @@ final class PantryMapViewController: UIViewController {
             self.locationManager.requestWhenInUseAuthorization()
         } else if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             self.locationManager.startUpdatingLocation()
-        }
-    }
-    
-    @objc private func scanButtonTapped(_ sender: UIBarButtonItem) {
-        if let location = self.userLocation {
-            self.mapView.setCenter(location, animated: true)
         }
     }
     
@@ -78,10 +76,20 @@ final class PantryMapViewController: UIViewController {
                         self.mapView.addAnnotation(PantryAnnotation(pantry: pantry))
                     }
                     self.mapView.camera.centerCoordinate = CLLocationCoordinate2D(latitude: 35.996543666002445, longitude: -78.90108037808307)
-                    self.mapView.camera.altitude = 10000
+                    self.mapView.camera.altitude = 15000
                 }
             }
         }
+    }
+    
+    @objc private func scanButtonTapped(_ sender: UIBarButtonItem) {
+        if let location = self.userLocation {
+            self.mapView.setCenter(location, animated: true)
+        }
+    }
+    
+    @objc private func aboutButtonTapped(_ sender: UIButton) {
+        self.present(UINavigationController(rootViewController: AboutViewController()), animated: true, completion: nil)
     }
 
 }
@@ -131,13 +139,6 @@ extension PantryMapViewController: CLLocationManagerDelegate {
         guard let location = locations.last,
             location.horizontalAccuracy <= kCLLocationAccuracyHundredMeters else { return }
         self.userLocation = location.coordinate
-        // On the initial load, we want to center the map on the user.
-        if self.isInitialLoad {
-            self.isInitialLoad = false
-            DispatchQueue.main.async {
-                self.mapView.setCenter(location.coordinate, animated: true)
-            }
-        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -145,7 +146,7 @@ extension PantryMapViewController: CLLocationManagerDelegate {
     }
 }
 
-final class PantryAnnotation: NSObject, MKAnnotation {
+private final class PantryAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     let pantry: Pantry
     

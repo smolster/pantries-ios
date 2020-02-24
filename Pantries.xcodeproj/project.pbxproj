@@ -13,6 +13,7 @@
 		A0CB6CF123E9067E00EBA68B /* PantryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CB6CF023E9067E00EBA68B /* PantryListViewController.swift */; };
 		A0CB6CF623E907DD00EBA68B /* PantryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CB6CF423E907DD00EBA68B /* PantryDetailViewController.swift */; };
 		A0CB6CF723E907DD00EBA68B /* PantryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0CB6CF523E907DD00EBA68B /* PantryDetailViewController.xib */; };
+		A0F58FD523FCE61C00B2546C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F58FD423FCE61C00B2546C /* AboutViewController.swift */; };
 		A41DFBC120CB960A00A9014F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41DFBC020CB960A00A9014F /* AppDelegate.swift */; };
 		A41DFBC820CB960B00A9014F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41DFBC720CB960B00A9014F /* Assets.xcassets */; };
 		A41DFBCB20CB960B00A9014F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A41DFBC920CB960B00A9014F /* LaunchScreen.storyboard */; };
@@ -29,6 +30,7 @@
 		A0CB6CF023E9067E00EBA68B /* PantryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantryListViewController.swift; sourceTree = "<group>"; };
 		A0CB6CF423E907DD00EBA68B /* PantryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryDetailViewController.swift; sourceTree = "<group>"; };
 		A0CB6CF523E907DD00EBA68B /* PantryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PantryDetailViewController.xib; sourceTree = "<group>"; };
+		A0F58FD423FCE61C00B2546C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A41DFBBD20CB960A00A9014F /* Durham Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Durham Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41DFBC020CB960A00A9014F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A41DFBC720CB960B00A9014F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				A0CB6CF023E9067E00EBA68B /* PantryListViewController.swift */,
 				A0CB6CF423E907DD00EBA68B /* PantryDetailViewController.swift */,
 				A0CB6CF523E907DD00EBA68B /* PantryDetailViewController.xib */,
+				A0F58FD423FCE61C00B2546C /* AboutViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				A052E542238B3DFD00889C42 /* Pantry.swift in Sources */,
 				A0CB6CF623E907DD00EBA68B /* PantryDetailViewController.swift in Sources */,
 				A08B84FF238B33FE002A37DD /* GitHubPantryProvider.swift in Sources */,
+				A0F58FD523FCE61C00B2546C /* AboutViewController.swift in Sources */,
 				A0CB6CF123E9067E00EBA68B /* PantryListViewController.swift in Sources */,
 				A08B84FC238B3191002A37DD /* LoadingOverlay.swift in Sources */,
 				A44ADEBB20CC5994000154A6 /* PantryTableViewCell.swift in Sources */,
