@@ -43,7 +43,7 @@ final class PantryDetailViewController: UIViewController {
             (
                 title: NSLocalizedString("item_detail_address", comment: "The address header in the detail view."),
                 detail: "\(pantry.address)\n\(pantry.city)",
-                detailDataDetectorTypes: UIDataDetectorTypes.address
+                detailDataDetectorTypes: nil
             ),
             (
                 title: NSLocalizedString("item_detail_available", comment: "The availability header in the detail view."),
